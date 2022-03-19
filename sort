@@ -1,0 +1,119 @@
+#include <bits/stdc++.h>
+using namespace std ;
+void  selectionsort(vector <int> &arr,int size){
+    for (int i=0;i<size;i++){
+        int min =i;
+     for(int j=i+1;j<size;j++){
+              if(arr[j]<arr[min]){
+                  min=j;
+              }}
+              int temp= arr[i];
+              arr[i]=arr[min];
+              arr[min]=temp;
+
+     }
+     
+   /* void bubblesort(vector <int > &arr ,int size){
+        for(int i=0;i<size;i++){
+            for (int j=0;j<size;j++){
+                if(arr[j]>arr[j+1]){
+              swap(arr[j],arr[j+1]);
+                }
+            }
+        }
+    }*/
+     void bubblesort(vector <int > &arr ,int size){   //using recursion
+if(size==0){
+    return;
+}
+            for (int j=0;j<size;j++){
+                if(arr[j]>arr[j+1]){
+               swap(arr[j],arr[j+1]);
+                }
+            }
+            return bubblesort(arr,size-1);
+        }
+        void insertionsort(vector <int >&arr,int size){
+            for(int i=1;i<size;i++){
+               int value =arr[i];
+               int hole=i;
+               while (hole>0&&arr[hole-1]>value){
+                   arr[hole]=arr[hole-1];
+                    hole--;
+               }arr[hole]=value;
+                }
+    }
+    void mergee(vector<int>&l,vector<int>&r,vector <int>&arr){
+        int i=0;
+          int j=0;
+          int k=0;
+          while(i<l.size()&&j<(r.size())){
+              if(l[i]<=r[j]){
+                  arr[k]=l[i];
+                  i++;
+              }
+              else{
+                  arr[k]=r[j];
+                  j++;
+              }
+              k++;
+          }
+          while(i<l.size()){
+              arr[k]=l[i];
+                  i++;
+                  k++;   }
+          while(j<r.size()){
+               arr[k]=r[j];
+                  j++;
+                  k++;
+          } }
+    void mergesort(vector<int>&arr){    //some error take idea only
+         int size=arr.size();
+        if(size<2){
+            return ;
+        }
+       
+        vector<int> l{};
+        vector<int>r{};
+        int mid=size/2;
+        for (int i=0;i<mid;i++){
+             l.push_back(arr[i]);
+        }
+        for(int i=mid;i<size;i++){
+          r.push_back(arr[i]); }
+           return mergesort(l);
+          return mergesort(r);
+        mergee(l,r,arr);
+          }
+             
+             
+             int part(vector<int>&arr,int start,int end){   //can also use random partition to avoid  worst cases
+              int value=arr[end];
+               int j=start;
+              for(int i=start;i<end;i++){
+                  if(arr[i]<=value){
+                      swap(arr[i],arr[j]);
+                      j++;}}
+                      swap(arr[end],arr[j]);
+                      return j;      }
+          void quicksort(vector<int>&arr,int start,int end){
+              if(start<end){
+                  int pindex=part(arr,start,end);
+                  quicksort(arr,start,pindex-1);
+                  quicksort(arr,pindex+1,end);
+              }
+          }
+       
+  
+int main(){
+    vector<int> arr{3,1,8,6};
+   // selectionsort(arr,4);
+  // bubblesort(arr,2);
+  //insertionsort(arr,4);
+//  mergesort(arr);
+quicksort(arr,0,3);
+    for(int i=0;i<4;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
