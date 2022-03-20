@@ -1,4 +1,29 @@
-class Solution {
+class Solution {       //space complexity - o(m+n)
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int p=matrix.size();
+        vector<int>a;
+        vector<int>b;
+        int k=0;;
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[i].size();j++){
+                if(matrix[i][j]==0){
+                    a.push_back(i);
+                    b.push_back(j);
+                    k++;
+                 }
+                } }for(int x=0;x<k;x++){
+        for(int p=0;p<matrix[a[x]].size();p++){
+           matrix[a[x]][p]=0;
+          }for(int p=0;p<matrix.size();p++){
+              matrix[p][b[x]]=0;                 }
+                
+            }
+        
+    
+                             }
+};
+class Solution {         //space complexity- O(1)   time compleaxity O(2*(M*N)
 public:
     void setZeroes(vector<vector<int>>& matrix) {
         int x=0;
